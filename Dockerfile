@@ -8,21 +8,16 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application code
 COPY . .
 
-# Generate Prisma client (without migrations in build stage)
+# Run Prisma migrations automatically on startup
 RUN npx prisma generate
-
-# Build the Next.js application
-RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Run database migrations before starting the app
-
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
-
+# Start script (Apply Migrations Before Starting App)
+CMD npx prisma migrate deploy && npm start
