@@ -1,4 +1,4 @@
- # Use Node.js as the base image
+# Use Node.js as the base image
 FROM node:18
 
 # Set the working directory inside the container
@@ -23,4 +23,6 @@ RUN npm run build
 EXPOSE 3000
 
 # Run database migrations before starting the app
-CMD npx prisma migrate deploy && npm start
+
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+
