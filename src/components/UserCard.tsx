@@ -14,6 +14,8 @@ const UserCard = async ({
   };
 
   const data = await modelMap[type].count();
+console.log("Cloudinary Cloud Name:", process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
+
 
   return (
     <div className="rounded-2xl odd:bg-lamaPurple even:bg-lamaYellow p-4 flex-1 min-w-[130px]">

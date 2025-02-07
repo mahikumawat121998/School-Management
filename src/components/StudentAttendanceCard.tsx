@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 
+
 const StudentAttendanceCard = async ({ id }: { id: string }) => {
   const attendance = await prisma.attendance.findMany({
     where: {
@@ -9,7 +10,7 @@ const StudentAttendanceCard = async ({ id }: { id: string }) => {
       },
     },
   });
-
+  console.log("Cloudinary Cloud Name:", process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
   const totalDays = attendance.length;
   const presentDays = attendance.filter((day) => day.present).length;
   const percentage = (presentDays / totalDays) * 100;
